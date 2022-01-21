@@ -1,0 +1,21 @@
+<h1><%= @pokemon.name %></h1>
+
+<img 
+  src=<%= "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/#{@pokemon.id}.png"%>
+  width="200" 
+  height="200"
+/>
+
+<table class="table" style="width:600px">
+  <tbody>
+    <% @columns.each do |column| %>
+      <tr>
+        <th><%= column %></th>
+        <th><%= @pokemon[column] %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'edit', edit_pokemon_path(@pokemon), class: "btn btn-primary"%>
+<%= link_to 'delete', @pokemon, data: { "turbo-method": :delete } %>

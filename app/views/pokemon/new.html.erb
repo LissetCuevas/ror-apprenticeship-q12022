@@ -1,0 +1,21 @@
+<h1>Add new pokemon</h1>
+
+<%= form_with model: @pokemon, url: pokemon_index_path(@pokemon), method: "post" do |f| %>
+	<p>Name:</p>
+  <%= f.text_field :name %>
+  <p>Base experience:</p>
+  <%= f.number_field  :base_experience %>
+  <p>Height:</p>
+  <%= f.number_field :height %>
+  <!--<p>Is default:</p>
+  <%= f.check_box :is_default %>-->
+  <p>Order:</p>
+  <%= f.number_field :order %>
+  <p>Weight:</p>
+  <%= f.number_field:weight %>
+  <p>Location area encounters:</p>
+  <%= f.text_field :location_area_encounters %>
+	
+  <br/>
+  <%= f.button "Create" %>
+<% end %>

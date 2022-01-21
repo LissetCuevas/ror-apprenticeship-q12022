@@ -1,0 +1,23 @@
+<h1>Pokemon#index</h1>
+<%= link_to('New pokemon', new_pokemon_path) %>
+
+<table class="table" style="width:600px">
+  <thead class="table-light">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pokemons.each do |pokemon| %>
+      <tr>
+        <th><%= pokemon.id %></th>
+        <th><%= pokemon.name %></th>
+        <th><%= link_to('show', pokemon_path(id: pokemon.id)) %></th>
+    
+        <th><%= link_to 'edit', edit_pokemon_path(@pokemon), class: "btn btn-primary"%></th>
+        <th><%= link_to 'delete', @pokemon, data: { "turbo-method": :delete } %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

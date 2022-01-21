@@ -42,6 +42,15 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# HTTP client api for Ruby.
+gem 'net-http', '~> 0.2.0'
+
+# JSON implementation as a Ruby extension
+gem 'json', '~> 2.6', '>= 2.6.1'
+
+# A simplified interface for interacting with the PokéAPI version 2 - https://pokeapi.co/api/v2/
+gem 'poke-api-v2'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

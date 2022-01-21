@@ -1,0 +1,21 @@
+<h1>Editing <%= @pokemon.name%></h1>
+
+<%= form_with model: @pokemon, url: pokemon_path(@pokemon), method: "patch" do |f| %>
+	<p>Name:</p>
+  <%= f.text_field :name , value: @pokemon.name%>
+  <p>Base experience:</p>
+  <%= f.number_field  :base_experience , value: @pokemon.base_experience%>
+  <p>Height:</p>
+  <%= f.number_field :height , value: @pokemon.height%>
+  <!--<p>Is default:</p>
+  <%= f.check_box :is_default , value: @pokemon.is_default%>-->
+  <p>Order:</p>
+  <%= f.number_field :order , value: @pokemon.order%>
+  <p>Weight:</p>
+  <%= f.number_field:weight , value: @pokemon.weight%>
+  <p>Location area encounters:</p>
+  <%= f.text_field :location_area_encounters , value: @pokemon.location_area_encounters%>
+	
+  <br/>
+  <%= f.button "Update" %>
+<% end %>
