@@ -10,8 +10,8 @@
     Ability.create(
       name: ability.name,
       generation: ability.generation.name,
-      effect: effects.empty? ? '' : effects[0].effect.present,
-      short_effect: effects.empty? ? '' : effects[0].short_effect.present,
+      effect: effects.empty? ? '' : effects[0].effect,
+      short_effect: effects.empty? ? '' : effects[0].short_effect,
       api_id: ability.id
     )
   end
@@ -47,6 +47,10 @@ end
     pokemon.abilities.each do |ability_obj|
       ability = Ability.find_by_name(ability_obj.ability.name)
       new_pokemon.abilities << ability
+    end
+    pokemon.types.each do |type_obj|
+      type = Type.find_by_name(type_obj.type.name)
+      new_pokemon.types << type
     end
   end
 end

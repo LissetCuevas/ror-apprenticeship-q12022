@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_203031) do
+ActiveRecord::Schema.define(version: 2022_01_21_230511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,13 @@ ActiveRecord::Schema.define(version: 2022_01_21_203031) do
     t.string "location_area_encounters"
     t.boolean "public", default: true
     t.integer "api_id"
+  end
+
+  create_table "pokemons_types", id: false, force: :cascade do |t|
+    t.bigint "pokemon_id", null: false
+    t.bigint "type_id", null: false
+    t.index ["pokemon_id", "type_id"], name: "index_pokemons_types_on_pokemon_id_and_type_id"
+    t.index ["type_id", "pokemon_id"], name: "index_pokemons_types_on_type_id_and_pokemon_id"
   end
 
   create_table "types", force: :cascade do |t|
