@@ -12,7 +12,7 @@
       <div class="card h-100">
         <%= link_to pokemon_path(pokemon) do %>
           <img 
-            src=<%= "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/#{pokemon.api_id}.png"%>
+            src=<%= "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/#{pokemon.api_id ? pokemon.api_id : rand(1..898)}.png"%>
             class="card-img-top "
             style="background: linear-gradient(#190033, #660066)"
           />
