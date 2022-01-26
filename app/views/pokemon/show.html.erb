@@ -14,6 +14,26 @@
         <th><%= @pokemon[column] %></th>
       </tr>
     <% end %>
+    <tr>
+      <th>types</th>
+      <th>
+        <% @pokemon.types.map do |type| %>
+          <div class="badge alert-success">
+            <%= type.name %>
+          </div>
+        <% end %>
+      </th>
+    </tr>   
+    <tr>
+      <th>abilities</th>
+      <th>
+        <% @pokemon.abilities.map do |ability| %>
+          <div class="badge alert-warning">
+            <%= ability.name %>
+          </div>
+        <% end %>
+      </th>
+    </tr>  
   </tbody>
 </table>
 
