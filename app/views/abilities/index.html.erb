@@ -1,0 +1,26 @@
+<h1>Abilities</h1>
+
+<% if user_signed_in? %>
+  <%= link_to "New ability", new_ability_path, class: "btn btn-success"%>
+<% end %>
+
+<table class="table" id="abilities">
+  <thead>
+    <tr class="text-white">
+      <th scope="col">Name</th>
+      <th scope="col">Short effect</th>
+      <th scope="col">Generation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @abilities.each do |ability| %>
+      <tr class="text-white">
+        <td><%= link_to ability.name, ability %></td>
+        <td><%= ability.short_effect %></td>
+        <td><%= ability.generation %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

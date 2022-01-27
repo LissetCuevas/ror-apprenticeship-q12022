@@ -1,6 +1,7 @@
 class PokemonController < ApplicationController
   before_action :set_pokemon, only: [:show, :edit, :update, :destroy]
-  before_action :set_types, :set_abilities, only: [:new, :create, :edit, :update,]
+  before_action :set_types, :set_abilities, only: [:new, :create, :edit, :update]
+  before_action :user_logged, only: [:new,:create,:edit, :update, :destroy]
 
   def index
     if params[:search].blank?
@@ -43,6 +44,7 @@ class PokemonController < ApplicationController
     if @pokemon.update(pokemon_params)
       redirect_to(pokemon_index_path)
     else
+      flash[:error] = 'Error creating pokemon, verify that all parameter are correct'
       render('edit')
     end
   end

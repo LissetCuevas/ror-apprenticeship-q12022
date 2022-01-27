@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @type %>
+
+<div>
+  <%= link_to "Back to types", types_path %>
+  <br/>
+  <% if user_signed_in? %>
+    <%= link_to "Edit", edit_type_path(@type), class: "btn btn-primary" %> 
+    <%= button_to "Destroy", @type, method: :delete, class: "btn btn-danger" %>
+  <% end %>
+</div>

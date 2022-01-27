@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @ability %>
+
+<div>
+  <%= link_to "Back to abilities", abilities_path %>
+  <br/>
+  <% if user_signed_in? %>
+    <%= link_to "Edit", edit_ability_path(@ability), class: "btn btn-primary" %>
+    <%= button_to "Destroy", @ability, method: :delete, class: "btn btn-danger" %>
+  <% end %>
+</div>

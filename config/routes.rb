@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
+  resources :types
+  resources :abilities
+  get 'ability/index'
+  get 'ability/show'
+  get 'ability/edit'
+  get 'ability/update'
+  get 'ability/delete'
+  get 'ability/new'
+  get 'ability/create'
+
   devise_for :users
   resources :pokemon
-  # resources :ability
-  # resources :type
 
   # Pokemon API
   namespace :api do
