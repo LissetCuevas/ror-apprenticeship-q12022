@@ -26,6 +26,14 @@
       <label>Location area encounters:</label>
       <%= f.text_field :location_area_encounters, class: "form-control", value: @pokemon.location_area_encounters %>
     </div>
+    <div class="form-group">
+      <label>Types</label> <br/>
+      <%= f.select :types, options_for_select(@types.map(&:name), @pokemon.types.map(&:name)) ,{:include_blank => 'None'}, {:multiple => true}%>
+    </div>
+    <div class="form-group">
+      <label>Abilities</label> <br/>
+      <%= f.select :abilities, options_for_select(@abilities.map(&:name), @pokemon.abilities.map(&:name)), {:include_blank => 'None'}, {:multiple => true} %>
+    </div>
     
     <br/>
     <%= f.button "Update", class: "btn btn-primary" %>
