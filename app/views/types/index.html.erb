@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Types</h1>
+
+<%= link_to "New type", new_type_path, class: "btn btn-success"%>
+
+<table class="table" id="types" style="width: 300px;">
+  <thead>
+    <tr class="text-white">
+      <th scope="col">Name</th>
+      <th scope="col">Generation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @types.each do |type| %>
+      <tr class="text-white">
+        <td><%= link_to type.name, type %></td>
+        <td><%= type.generation %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
