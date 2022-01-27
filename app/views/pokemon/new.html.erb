@@ -1,21 +1,41 @@
-<h1>Add new pokemon</h1>
+<h1>Create new pokemon</h1>
+<br/>
 
 <%= form_with model: @pokemon, url: pokemon_index_path(@pokemon), method: "post" do |f| %>
-	<p>Name:</p>
-  <%= f.text_field :name %>
-  <p>Base experience:</p>
-  <%= f.number_field  :base_experience %>
-  <p>Height:</p>
-  <%= f.number_field :height %>
-  <!--<p>Is default:</p>
-  <%= f.check_box :is_default %>-->
-  <p>Order:</p>
-  <%= f.number_field :order %>
-  <p>Weight:</p>
-  <%= f.number_field:weight %>
-  <p>Location area encounters:</p>
-  <%= f.text_field :location_area_encounters %>
-	
-  <br/>
-  <%= f.button "Create" %>
+  <div style="width: 300px">
+    <div class="form-group">
+      <label>Name</label>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Base experience</label>
+      <%= f.number_field  :base_experience, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Height</label>
+      <%= f.number_field :height, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Order</label>
+      <%= f.number_field :order, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Weight</label>
+      <%= f.number_field :weight, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Location area encounters</label>
+      <%= f.text_field :location_area_encounters, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Types</label> <br/>
+      <%= f.select :types, options_for_select(@types.map(&:name)), {:include_blank => 'None'}, {:multiple => true}%>
+    </div>
+    <div class="form-group">
+      <label>Abilities</label> <br/>
+      <%= f.select :abilities, options_for_select(@abilities.map(&:name)), {:include_blank => 'None'}, {:multiple => true} %>
+    </div>
+    <br/>
+    <%= f.button "Create", class: "btn btn-primary" %>
+  </div>
 <% end %>

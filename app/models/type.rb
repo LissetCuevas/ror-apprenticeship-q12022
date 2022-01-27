@@ -1,3 +1,3 @@
-class Ability < ApplicationRecord
+class Type < ApplicationRecord
   has_and_belongs_to_many :pokemons
 end

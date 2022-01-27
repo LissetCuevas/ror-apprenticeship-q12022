@@ -1,23 +1,39 @@
-<h1>Pokemon#index</h1>
-<%= link_to('New pokemon', new_pokemon_path) %>
+<div class="text-center">
+  <img src="/pokemon_logo.png" width="400"/>
+  <br/><br/>
+  <%= form_tag pokemon_index_path, method: :get do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag "Search", class: "btn btn-primary"%>
+  <% end%>
+</div>
 
-<table class="table" style="width:600px">
-  <thead class="table-light">
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pokemons.each do |pokemon| %>
-      <tr>
-        <th><%= pokemon.id %></th>
-        <th><%= pokemon.name %></th>
-        <th><%= link_to('show', pokemon_path(id: pokemon.id)) %></th>
-    
-        <th><%= link_to 'edit', edit_pokemon_path(@pokemon), class: "btn btn-primary"%></th>
-        <th><%= link_to 'delete', @pokemon, data: { "turbo-method": :delete } %></th>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row row-cols-1 row-cols-md-6 g-8 justify-content-center text-center">
+  <% @pokemons.each do |pokemon| %>
+    <div class="col" style="padding: 0; margin: 20px 15px 20px 15px; border: 16px solid #FFEC9E; border-radius: 5px">
+      <div class="card h-100">
+        <%= link_to pokemon_path(pokemon) do %>
+          <img 
+            src=<%= "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/#{pokemon.api_id ? pokemon.api_id : rand(1..898)}.png"%>
+            class="card-img-top "
+            style="background: linear-gradient(#190033, #660066)"
+          />
+        <% end %>
+        <div class="card-body text-dark" style="background: #FFEC9E">
+          <h5 class="card-title"><%= link_to pokemon.name, pokemon_path(pokemon), class: "text-dark text-decoration-none" %></h5>
+          <div class="card-text">
+            <% pokemon.types.map do |type| %>
+              <div class="badge alert-success">
+                <%= type.name %>
+              </div>
+            <% end %>
+            <% pokemon.abilities.map do |ability| %>
+              <div class="badge alert-danger">
+                <%= ability.name %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

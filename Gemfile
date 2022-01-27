@@ -51,6 +51,9 @@ gem 'json', '~> 2.6', '>= 2.6.1'
 # A simplified interface for interacting with the PokéAPI version 2 - https://pokeapi.co/api/v2/
 gem 'poke-api-v2'
 
+# Flexible authentication solution for Rails with Warden
+gem 'devise', '~> 4.8', '>= 4.8.1'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -79,3 +82,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "byebug"
