@@ -7,27 +7,23 @@ Rails.application.routes.draw do
   # Pokemon API
   namespace :api do
     namespace :v1 do
-      resources :pokemon
+      resources :pokemon, only: [:index, :show]
     end
   end
 
   # Abilities API
-  # namespace :api do
-  #   namespace :v1 do
-  #     namespace :pokemon do
-  #       resources :abilitites
-  #     end
-  #   end
-  # end
+  namespace :api do
+    namespace :v1 do
+      resources :ability, only: [:index, :show]
+    end
+  end
 
   # Types API
-  # namespace :api do
-  #   namespace :v1 do
-  #     namespace :pokemon do
-  #       resources :type
-  #     end
-  #   end
-  # end
+  namespace :api do
+    namespace :v1 do
+      resources :type, only: [:index, :show]
+    end
+  end
 
   # Defines the root path route ("/")
   root "pokemon#index"
