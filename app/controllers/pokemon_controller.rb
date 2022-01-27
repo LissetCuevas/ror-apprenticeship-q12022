@@ -3,7 +3,11 @@ class PokemonController < ApplicationController
   before_action :set_types, :set_abilities, only: [:new, :create, :edit, :update,]
 
   def index
-    @pokemons = Pokemon.all
+    if params[:search].blank?
+      @pokemons = Pokemon.all
+    else
+      @pokemons = Pokemon.where('name LIKE ?', "%#{params[:search]}%").to_a
+    end
   end
 
   def show
@@ -69,7 +73,7 @@ class PokemonController < ApplicationController
   private
 
   def pokemon_params
-    params.require(:pokemon).permit(:name, :base_experience, :height, :order, :weight, :location_area_encounters)
+    params.require(:pokemon).permit(:name, :base_experience, :height, :order, :weight, :location_area_encounters, :search)
   end
 
   def set_pokemon
