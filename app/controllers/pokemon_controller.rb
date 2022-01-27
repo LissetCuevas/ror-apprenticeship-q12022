@@ -1,6 +1,7 @@
 class PokemonController < ApplicationController
   before_action :set_pokemon, only: [:show, :edit, :update, :destroy]
-  before_action :set_types, :set_abilities, only: [:new, :create, :edit, :update,]
+  before_action :set_types, :set_abilities, only: [:new, :create, :edit, :update]
+  before_action :user_logged, only: [:new,:create,:edit, :update, :destroy]
 
   def index
     if params[:search].blank?

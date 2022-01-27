@@ -3,8 +3,10 @@
 <%= render @type %>
 
 <div>
-  <%= link_to "Edit this type", edit_type_path(@type) %> |
   <%= link_to "Back to types", types_path %>
-
-  <%= button_to "Destroy this type", @type, method: :delete %>
+  <br/>
+  <% if user_signed_in? %>
+    <%= link_to "Edit", edit_type_path(@type), class: "btn btn-primary" %> 
+    <%= button_to "Destroy", @type, method: :delete, class: "btn btn-danger" %>
+  <% end %>
 </div>

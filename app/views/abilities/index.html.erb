@@ -1,6 +1,8 @@
 <h1>Abilities</h1>
 
-<%= link_to "New ability", new_ability_path, class: "btn btn-success"%>
+<% if user_signed_in? %>
+  <%= link_to "New ability", new_ability_path, class: "btn btn-success"%>
+<% end %>
 
 <table class="table" id="abilities">
   <thead>

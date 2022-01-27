@@ -1,5 +1,6 @@
 class TypesController < ApplicationController
   before_action :set_type, only: %i[ show edit update destroy ]
+  before_action :user_logged, only: [:new,:create,:edit, :update, :destroy]
 
   # GET /types or /types.json
   def index

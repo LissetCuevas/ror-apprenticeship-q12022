@@ -2,7 +2,9 @@
 
 <h1>Types</h1>
 
-<%= link_to "New type", new_type_path, class: "btn btn-success"%>
+<% if user_signed_in? %>
+  <%= link_to "New type", new_type_path, class: "btn btn-success"%>
+<% end %>
 
 <table class="table" id="types" style="width: 300px;">
   <thead>

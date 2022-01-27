@@ -3,8 +3,10 @@
 <%= render @ability %>
 
 <div>
-  <%= link_to "Edit this ability", edit_ability_path(@ability) %> |
   <%= link_to "Back to abilities", abilities_path %>
-
-  <%= button_to "Destroy this ability", @ability, method: :delete %>
+  <br/>
+  <% if user_signed_in? %>
+    <%= link_to "Edit", edit_ability_path(@ability), class: "btn btn-primary" %>
+    <%= button_to "Destroy", @ability, method: :delete, class: "btn btn-danger" %>
+  <% end %>
 </div>
