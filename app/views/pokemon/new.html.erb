@@ -27,8 +27,6 @@
       <label>Location area encounters</label>
       <%= f.text_field :location_area_encounters, class: "form-control" %>
     </div>
-    <!--<p>Is default:</p>
-    <%= f.check_box :is_default %>-->
     <div class="form-group">
       <label>Types</label> <br/>
       <%= f.select :types, options_for_select(@types.map(&:name)), {:include_blank => 'None'}, {:multiple => true}%>

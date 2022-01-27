@@ -1,43 +1,44 @@
 class PokemonController < ApplicationController
+  before_action :set_pokemon, only: [:show, :edit, :update, :destroy]
+  before_action :set_types, :set_abilities, only: [:new, :create, :edit, :update,]
+
   def index
-    @pokemons = Pokemon.all
+    if params[:search].blank?
+      @pokemons = Pokemon.all
+    else
+      @pokemons = Pokemon.where('name LIKE ?', "%#{params[:search]}%").to_a
+    end
   end
 
   def show
-    @pokemon = Pokemon.find_by_id(params[:id])
     @columns = Pokemon.column_names
   end
 
   def new
     @pokemon = Pokemon.new
-    @types = Type.all
-    @abilities = Ability.all
   end
 
   def create
-    @types = Type.all
-    @abilities = Ability.all
     @pokemon = Pokemon.new(pokemon_params)
 
-    @pokemon.types << find_types_by_name(params[:pokemon][:types])
-    @pokemon.abilities << find_abilities_by_name(params[:pokemon][:abilities])
+    @pokemon.types = find_types_by_name(params[:pokemon][:types])
+    @pokemon.abilities = find_abilities_by_name(params[:pokemon][:abilities])
 
     @pokemon.user_id = current_user.id
 
     if @pokemon.save
       redirect_to(pokemon_index_path)
     else
-      flash[:error] = "Error creating pokemon, add it "
+      flash[:error] = 'Error creating pokemon, verify that all parameter are correct'
       render('new')
     end
   end
 
-  def edit
-    @pokemon = Pokemon.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @pokemon = Pokemon.find(params[:id])
+    @pokemon.types = find_types_by_name(params[:pokemon][:types])
+    @pokemon.abilities = find_abilities_by_name(params[:pokemon][:abilities])
 
     if @pokemon.update(pokemon_params)
       redirect_to(pokemon_index_path)
@@ -47,7 +48,6 @@ class PokemonController < ApplicationController
   end
 
   def destroy
-    @pokemon = Pokemon.find(params[:id])
     @pokemon.destroy
     redirect_to(pokemon_index_path, status: 303)
   end
@@ -73,6 +73,18 @@ class PokemonController < ApplicationController
   private
 
   def pokemon_params
-    params.require(:pokemon).permit(:name, :base_experience, :height, :order, :weight, :location_area_encounters)
+    params.require(:pokemon).permit(:name, :base_experience, :height, :order, :weight, :location_area_encounters, :search)
+  end
+
+  def set_pokemon
+    @pokemon = Pokemon.find(params[:id])
+  end
+
+  def set_types
+    @types = Type.all
+  end
+
+  def set_abilities
+    @abilities = Ability.all
   end
 end
