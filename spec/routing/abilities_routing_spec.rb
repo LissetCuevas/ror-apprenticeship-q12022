@@ -1,10 +1,7 @@
 require "rails_helper"
+require "./spec/support/devise"
 
 RSpec.describe AbilitiesController, type: :routing do
-  before :each do
-    @user = create(:user)
-    sign_in(@user)
-  end
 
   describe "routing" do
     it "routes to #index" do

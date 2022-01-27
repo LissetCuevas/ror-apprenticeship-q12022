@@ -44,6 +44,7 @@ class PokemonController < ApplicationController
     if @pokemon.update(pokemon_params)
       redirect_to(pokemon_index_path)
     else
+      flash[:error] = 'Error creating pokemon, verify that all parameter are correct'
       render('edit')
     end
   end
